@@ -1,4 +1,5 @@
-from rest_framework.viewsets import ModelViewSet
+from rest_framework.viewsets import ModelViewSet, GenericViewSet
+from rest_framework import filters, generics, mixins
 
 from app.models import Note, Client, Tag
 from .serializers import (
@@ -25,11 +26,19 @@ class ClientViewSet(ModelViewSet):
 
 # Note
 
-class NoteViewSet(ModelViewSet):
-    queryset = Note.objects.all()
-    serializer_class = NoteSerializerDetail
-
-
-class NoteViewSetStore(ModelViewSet):
+class NoteViewSetStore(GenericViewSet, mixins.CreateModelMixin, mixins.UpdateModelMixin):
     queryset = Note.objects.all()
     serializer_class = NoteSerializer
+
+
+class NoteList(GenericViewSet, mixins.ListModelMixin, mixins.RetrieveModelMixin):
+    serializer_class = NoteSerializerDetail
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['title', 'text', 'tags__name']
+
+    def get_queryset(self):
+        queryset = Note.objects.all()
+        tag_id = self.request.query_params.get('tag', None)
+        if tag_id is not None:
+            queryset = queryset.filter(tags__in=tag_id)
+        return queryset
