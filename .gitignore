@@ -125,7 +125,3 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-
-/app/migrations/0002_tag_color.py
-/app/migrations/0003_auto_20191126_1133.py
-/app/migrations/0004_auto_20191126_1133.py
