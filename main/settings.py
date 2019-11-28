@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django_extensions',
     'django.contrib.sites',
     'rest_framework',
+    'drf_yasg',
     'rest_framework.authtoken',
     'rest_auth',
     'allauth',

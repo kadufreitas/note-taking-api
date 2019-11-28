@@ -37,12 +37,20 @@ class TagViewSet(ModelViewSet):
 # Note
 
 class NoteViewSetStore(GenericViewSet, mixins.CreateModelMixin, mixins.UpdateModelMixin, mixins.DestroyModelMixin):
+    """
+        Endpoin para DELETE, POST e PUT de notas, aceitando apenas indentificadores (pk) nos campos de relacionamento.
+
+    """
     queryset = Note.objects.all()
     serializer_class = NoteSerializer
     authentication_classes = [TokenAuthentication]
     permission_classes = [IsAuthenticated]
 
     def create(self, request, *args, **kwargs):
+        """
+            Não precisa passar o client, ao estar logado a nota é criada para o usuario Autenticado
+
+            """
         user = request._user
         dataRequest = request.data.copy()
         dataRequest['client'] = user.pk
@@ -53,6 +61,10 @@ class NoteViewSetStore(GenericViewSet, mixins.CreateModelMixin, mixins.UpdateMod
         return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
 
     def update(self, request, *args, **kwargs):
+        """
+            Não precisa passar o client, ao estar logado a nota é criada para o usuario Autenticado
+
+            """
         user = request._user
         dataRequest = request.data.copy()
         dataRequest['client'] = user.pk
@@ -68,6 +80,10 @@ class NoteViewSetStore(GenericViewSet, mixins.CreateModelMixin, mixins.UpdateMod
 
 
 class NoteList(GenericViewSet, mixins.ListModelMixin, mixins.RetrieveModelMixin):
+    """
+           Retorna a lista de Notes com os campos detalhados
+
+           """
     serializer_class = NoteSerializerDetail
     filter_backends = [filters.SearchFilter]
     authentication_classes = [TokenAuthentication]
@@ -81,6 +97,7 @@ class NoteList(GenericViewSet, mixins.ListModelMixin, mixins.RetrieveModelMixin)
         if tag_id is not None:
             queryset = queryset.filter(tags__in=tag_id)
         return queryset
+
 
 class CustomAuthToken(ObtainAuthToken):
 
