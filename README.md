@@ -1,7 +1,7 @@
 ## Docs:
 
-API Doc : [/redoc/](/redoc/).
+API Doc : [http://note-taking-api.herokuapp.com/redoc/](http://note-taking-api.herokuapp.com/redoc/).
 ERD img : [/redoc/](/redoc/).
-Production : [/redoc/](/redoc/).
+Production : [http://note-taking-api.herokuapp.com/](http://note-taking-api.herokuapp.com/redoc/).
 
 
