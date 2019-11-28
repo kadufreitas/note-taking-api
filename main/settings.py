@@ -130,4 +130,6 @@ MEDIA_URL = '/media/'
 
 MEDIA_ROOT = 'media'
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 CORS_ORIGIN_ALLOW_ALL = True
