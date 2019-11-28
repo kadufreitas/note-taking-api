@@ -3,7 +3,7 @@ from rest_framework import routers
 from .viewsets import *
 
 router = routers.DefaultRouter()
-router.register(r'clients', ClientViewSet)
+# router.register(r'clients', ClientViewSet)
 router.register(r'tags', TagViewSet)
 router.register(r'notes', NoteViewSetStore)
 router.register(r'notes-list', NoteList, base_name='notes-list')
