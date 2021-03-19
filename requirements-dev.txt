@@ -10,7 +10,7 @@ django-extensions==2.2.5
 django-allauth==0.40.0
 django-cors-headers==3.2.0
 django-rest-auth==0.9.5
-djangorestframework==3.10.3
+djangorestframework==3.11.2
 drf-yasg==1.17.0
 graphviz==0.13.2
 idna==2.8
